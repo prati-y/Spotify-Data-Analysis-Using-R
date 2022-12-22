@@ -37,15 +37,15 @@ https://www.kaggle.com/code/lusfernandotorres/spotify-top-hits-2000-2019-eda/dat
 > View(spotify_songs)
 ```
 **Removing irrelevant columns:**
-
+```
 > View(spotify_songs) 
-> View(spotify_songs) > 
+> View(spotify_songs) 
 > dim(spotify_songs) 
 [1] 1941 19 
 > spotify_songs<-spotify_songs[,-c(3,9,11,14)] 
 > View(spotify_songs) 
 > dim(spotify_songs) 
 [1] 1941 15
-
+```
 ## Analysis and Visualizations
 
