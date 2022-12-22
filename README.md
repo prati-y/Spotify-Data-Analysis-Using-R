@@ -12,11 +12,10 @@ https://www.kaggle.com/code/lusfernandotorres/spotify-top-hits-2000-2019-eda/dat
 
 **Replacing Na values with median:**
 
-> setwd("C:/R/5250_R_Project_Script") 
+ setwd("C:/R/5250_R_Project_Script") 
 > spotify_songs<-read.csv("spotify_top_hits.csv") 
 > View(spotify_songs) 
-> dim(spotify_songs) 
-[1] 2000 18 
+> dim(spotify_songs) [1] 2000 18 
 > head(spotify_songs)  
 > colSums(is.na(spotify_songs)) 
 > spotify_songs[is.na(spotify_songs)]<-median(spotify_songs$popularity,na.rm=TRUE)
@@ -50,3 +49,18 @@ https://www.kaggle.com/code/lusfernandotorres/spotify-top-hits-2000-2019-eda/dat
 
 ## Analysis and Visualizations
 
+> setwd("~/Grad Courses/5250 Visual Analytics/r_script_project")
+> 
+> payroll<-read.csv("payroll.csv", header=T)
+> 
+> usable_columns <- subset(payroll, select=c(PAY_YEAR,
++                                            DEPARTMENT_TITLE,
++                                            MOU_TITLE,
++                                            EMPLOYMENT_TYPE,
++                                            REGULAR_PAY,
++                                            GENDER,
++                                            BENEFIT_PAY,
++                                            OVERTIME_PAY,
++                                            ALL_OTHER_PAY))
+> 
+> View(usable_columns)
