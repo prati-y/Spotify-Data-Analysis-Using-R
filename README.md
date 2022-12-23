@@ -58,3 +58,13 @@ https://www.kaggle.com/code/lusfernandotorres/spotify-top-hits-2000-2019-eda/dat
 
 <img width="387" alt="image" src="https://user-images.githubusercontent.com/104661414/209245035-432227cf-926d-4971-8be9-eecc4120625f.png">
 
+**How does the popularity change with the explicit content? Does explicit content positively, negatively, or neutral impact on popularity? **
+
+```
+> popularity_explicit_content<- spotify_songs %>% + 
++ ggplot(aes(x=popularity, fill=explicit))+ 
++ geom_histogram()+ 
++ ggtitle("Poplularity change with explicit content") 
+> popularity_explicit_content
+```
+      <img width="409" alt="image" src="https://user-images.githubusercontent.com/104661414/209245297-d2cf61e7-de85-4ebc-93ec-de6fe370b269.png">
