@@ -2,7 +2,7 @@
 
 Understand and interpreting data, analyze the results using statistical techniques and provide appropriate visualizations using ggplot2.
 
-This project has been developed to find the patterns
+This project has been developed to find the patterns and answers to what makes some music more popular than others. This analysis will help better understand the unique insights and enable Spotify to create a more optimized content distribution that would be helpful for their technical teams, allowing further investigation, such as trends. Furthermore, the study should provide insight into how to better support users, thus increasing profits and improving the overall user experience.
 
 # The dataset for this project has been taken from the URL link:
 
