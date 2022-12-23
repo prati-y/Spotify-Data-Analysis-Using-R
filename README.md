@@ -49,3 +49,12 @@ https://www.kaggle.com/code/lusfernandotorres/spotify-top-hits-2000-2019-eda/dat
 ```
 ## Analysis and Visualizations
 
+**What is the distribution of popularity by song? What are the top 10 songs?**
+```
+> library(ggplot2) 
+> library(tidyverse) 
+> ggplot(spotify_songs, aes( x = popularity)) +  geom_histogram(bins=15) + labs(title="popularity distribution by song") + theme_minimal()
+```
+
+<img width="387" alt="image" src="https://user-images.githubusercontent.com/104661414/209245035-432227cf-926d-4971-8be9-eecc4120625f.png">
+
