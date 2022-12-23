@@ -53,7 +53,10 @@ https://www.kaggle.com/code/lusfernandotorres/spotify-top-hits-2000-2019-eda/dat
 ```
 > library(ggplot2) 
 > library(tidyverse) 
-> ggplot(spotify_songs, aes( x = popularity)) +  geom_histogram(bins=15) + labs(title="popularity distribution by song") + theme_minimal()
+> ggplot(spotify_songs, aes( x = popularity)) +  
++ geom_histogram(bins=15) + 
++ labs(title="popularity distribution by song") + 
++ theme_minimal()
 ```
 
 <img width="387" alt="image" src="https://user-images.githubusercontent.com/104661414/209245035-432227cf-926d-4971-8be9-eecc4120625f.png">
@@ -68,3 +71,69 @@ https://www.kaggle.com/code/lusfernandotorres/spotify-top-hits-2000-2019-eda/dat
 > popularity_explicit_content
 ```
 <img width="409" alt="image" src="https://user-images.githubusercontent.com/104661414/209245297-d2cf61e7-de85-4ebc-93ec-de6fe370b269.png">
+
+**What is the proportion of high, medium, or low-rated songs? **
+
+```
+create popular_rating column for analysis’ 
+> summary(spotify_songs$popularity) 
+> spotify_songs$popularity 
+> spotify_songs$popularity_rating <- as.factor( 
++   ifelse(spotify_songs$popularity<=60, "Low - Under 60", 
++          ifelse(spotify_songs$popularity<=80, "Med - 60-79", 
++                 ifelse(spotify_songs$popularity>80,'High - 80 above',"High - 80 above") 
++                 )) 
++ )
+> spotify_songs$popularity_rating 
+
+‘plot bar and pie graph'
+
+> ggplot(spotify_songs, aes(x = popularity_rating))+ 
++ geom_bar() + 
++ labs(title="Popularity of songs rated High, Med, Low") + 
++ theme_minimal()
+
+> ggplot(spotify_songs, aes(x=factor("“),fill=popularity_rating))+
++ geom_bar()+coord_polar(theta = “y”) +
++ scale_x_discrete(“") + 
++ labs(title= “Proportion of songs rated High, Med, Low”)
+```
+![image](https://user-images.githubusercontent.com/104661414/209245813-4b2aeb1d-cbca-4a74-abf1-1dc3ffeebfb4.png)
+
+**Top 15 Artists with the most releases of the songs from the year 1998 – 2020?**
+
+'''
+> Artist_Popular <- spotify_songs %>% count(artist, sort = TRUE, name = "Count") 
+> Artist_Fil <- Artist_Popular %>% filter(Count >= 15) 
+> par(mar = c(12, 5, 4, 2)+ 0.1)  
+> barplot(Artist_Fil$Count, + 
++ ylab = "Number of songs", + 
++ col = "#80C4F5", + 
++ names.arg= Artist_Fil$artist, + 
++ width= 0.01, + 
++ ylim = c(0,20), +
++ las = 2 + )
+'''
+![image](https://user-images.githubusercontent.com/104661414/209246004-158f91e5-5dfd-47b4-8750-ea8dddef2ab6.png)
+
+**Has the length of songs changed through the years?**
+
+'''
+> song_duration<- transmute(spotify_songs, duration_min = (duration_ms / 1000)/60 , year) 
+> ggplot(song_duration, aes(x=year, y=duration_min)) + 
++ labs(title = "Duration of songs over years from 2000-2020") + 
++ labs(x="Year") + 
++ labs(y= "Duration in minutes") + 
++ geom_smooth() + 
++ geom_point()
+'''
+![image](https://user-images.githubusercontent.com/104661414/209246101-ae5da804-014c-4458-a87d-0837313cecdd.png)
+
+**How do the song's popularity and valency correlate with the duration?**
+'''
+>ggplot(spotify_songs, aes(x=valence, y=popularity, color=duration_min)) + 
++ geom_point(size=2) + 
++ ggtitle("Relationship between song popularity and valency")
+'''
+![image](https://user-images.githubusercontent.com/104661414/209246166-201ba244-d4db-4881-ace8-04b39addfbc6.png)
+
